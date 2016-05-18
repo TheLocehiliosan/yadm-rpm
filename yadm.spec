@@ -1,7 +1,7 @@
 Summary: Yet Another Dotfiles Manager
 Name: yadm
 Version: 1.04
-Release: 2%{?dist}
+Release: 3%{?dist}
 URL: https://github.com/TheLocehiliosan/yadm
 License: GPLv3
 BuildRequires: hostname git gnupg bats expect
@@ -21,24 +21,35 @@ encrypted before they are included in the repository.
 
 %build
 
+%check
+bats test
+
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
 mkdir -p ${RPM_BUILD_ROOT}%{_mandir}/man1
 install -m 755 yadm   ${RPM_BUILD_ROOT}%{_bindir}
 install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 
-%check
-bats test
-
 %files
 %attr(755,root,root) %{_bindir}/yadm
 %attr(644,root,root) %{_mandir}/man1/*
-%attr(644,root,root) %license LICENSE
-%attr(644,root,root) %doc CHANGES
+%license LICENSE
+%doc CHANGES CONTRIBUTORS README.md
 
 %changelog
-* Mon May 16 2016 Tim Byrne <sultan@locehilios.com> 1.04-2
-- Initial Fedora packaging
-- Support alternate paths for yadm data
-- Support asymmetric encryption
-- Prevent the mixing of output and gpg prompts
+* Tue May 17 2016 Tim Byrne <sultan@locehilios.com> - 1.04-3
+- Add missing docs
+- Fix changelog format
+- Remove file attribute for docs and license
+
+* Mon May 16 2016 Tim Byrne <sultan@locehilios.com> - 1.04-2
+- Add %%check
+- Add %%{?dist}
+- Add build dependencies
+- Add license and docs
+- Remove %%defattr
+- Remove group tag
+- Sync RPM description with man page
+
+* Fri Apr 22 2016 Tim Byrne <sultan@locehilios.com> - 1.04-1
+- Initial RPM release
