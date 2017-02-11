@@ -1,10 +1,10 @@
 Summary: Yet Another Dotfiles Manager
 Name: yadm
-Version: 1.04
-Release: 3%{?dist}
+Version: 1.07
+Release: 1%{?dist}
+Group: Development/Tools
 URL: https://github.com/TheLocehiliosan/yadm
 License: GPLv3
-BuildRequires: hostname git gnupg bats expect
 Requires: bash hostname git
 Source: https://github.com/TheLocehiliosan/%{name}/archive/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 BuildArch: noarch
@@ -21,8 +21,8 @@ encrypted before they are included in the repository.
 
 %build
 
-%check
-bats test
+#%check
+#bats test
 
 %install
 mkdir -p ${RPM_BUILD_ROOT}%{_bindir}
@@ -37,6 +37,12 @@ install -m 644 yadm.1 ${RPM_BUILD_ROOT}%{_mandir}/man1
 %doc CHANGES CONTRIBUTORS README.md
 
 %changelog
+* Fri Feb 10 2017 Tim Byrne <sultan@locehilios.com> - 1.07-1
+- Bump version to 1.07
+
+* Fri Jan 13 2017 Tim Byrne <sultan@locehilios.com> - 1.06-1
+- Bump version to 1.06
+
 * Tue May 17 2016 Tim Byrne <sultan@locehilios.com> - 1.04-3
 - Add missing docs
 - Fix changelog format
