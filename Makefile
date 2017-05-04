@@ -1,4 +1,4 @@
-VERSION=1.08
+VERSION=1.09
 
 buildhost:
 	docker run -h yadm-buildhost --rm -it -v "$$PWD:/home/tbyrne/yadm-rpm" -v "$$HOME/.buildhost:/home/tbyrne" yadm/buildhost:latest su - tbyrne
